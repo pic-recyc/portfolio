@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DANIEL KALKER | Photography</title>
+    <title>Daniel Kalker | Photographer for Architecture, Urban & Brands | Cologne</title>
     
     <!-- SEO BASIS -->
     <meta name="description" content="Portfolio of Daniel Kalker, Cologne-based photographer. Exclusive dpa contributor focusing on urban life, architecture, and brands in Europe and East Asia.">
-    <meta name="keywords" content="Daniel Kalker, Photography, Urban Photography, Architecture Photography, Cologne, dpa, East Asia">
+    <meta name="keywords" content="Daniel Kalker, Photography, Urban Photography, Architecture Photography, Commercial Photographer, Cologne, dpa, East Asia">
     <meta name="author" content="Daniel Kalker">
 
     <!-- SOCIAL SHARING / OPEN GRAPH -->
-    <meta property="og:title" content="DANIEL KALKER | Photography">
+    <meta property="og:title" content="Daniel Kalker | Photography">
     <meta property="og:description" content="Cinematic urban & architecture photography across Europe and East Asia.">
-    <meta property="og:image" content="https://www.wint.global/images/hero.jpg">
-    <meta property="og:url" content="https://www.wint.global">
+    <meta property="og:image" content="https://www.danielkalker.de/images/hero.jpg">
+    <meta property="og:url" content="https://www.danielkalker.de">
     <meta property="og:type" content="website">
 
     <!-- MINIMALIST FAVICON -->
@@ -192,7 +192,7 @@
         .gallery {
             column-count: 3;
             column-gap: 50px;
-            padding: 0 5% 40px 5%; /* Padding unten reduziert für die Sprungmarke */
+            padding: 0 5% 40px 5%;
             max-width: 2000px;
             margin: 0 auto;
         }
@@ -327,7 +327,7 @@
     <div id="content-wrapper">
         <main class="gallery" id="gallery-container"></main>
 
-        <!-- NEU: Back to Top für die Galerie -->
+        <!-- Sprungmarke -->
         <div id="gallery-footer" style="text-align: center; padding-bottom: 120px; display: none;">
             <button class="text-link" onclick="scrollToNav(true)">↑ Back to Top</button>
         </div>
@@ -342,11 +342,11 @@
                     <h2>Finding the cinematic<br>in the everyday.</h2>
                     <p>Hi, I'm Daniel. I'm a photographer based in Cologne, heavily focused on urban life, architecture, and brands across Europe and East Asia.</p>
                     <p>I’m a huge film enthusiast, which deeply shapes the way I see the world. When I wander through a city, I’m always looking for that unexpected angle—a new perspective on something familiar. For me, photography isn't just about documenting what a location looks like; it's about capturing how it actually feels to be there.</p>
-                    
-                    <p>For the past 15 years, I’ve been an exclusive contributor to <a href="https://www.picture-alliance.com/en" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: none; border-bottom: 1px solid #555; padding-bottom: 1px;"><em>picture alliance</em></a> (dpa, the German Press Agency), building an archive of more than 10,000 images. Whether I'm shooting a metropolis at night or a quiet architectural detail, my goal is always to tell the story of that space. Building on this foundation, I am now available for direct commissions, editorial assignments, and gallery collaborations.</p>
+                    <p>For the past 15 years, I’ve been an exclusive contributor to <a href="https://www.picture-alliance.com/en" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: none; border-bottom: 1px solid #555; padding-bottom: 1px;"><em>picture alliance</em></a> (dpa, the German Press Agency), building an archive of more than 10,000 images. Whether I'm shooting a metropolis at night or a quiet architectural detail, my goal is always to tell the story of that space.</p>
                     
                     <br>
-                    <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #888;">Direct Inquiries</p>
+                    <p style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: #888; margin-bottom: 5px;">Let's work together</p>
+                    <p style="font-size: 1.05rem; color: #cccccc; font-weight: 300; margin-top: 0; margin-bottom: 15px;">Available for commercial, editorial, and architectural assignments.</p>
                     <a href="mailto:d.kalker@web.de" style="color: #fff; text-decoration: none; font-size: 1.4rem; font-weight: 300;">d.kalker@web.de</a>
                     
                     <div class="meta-links">
@@ -359,7 +359,7 @@
         <section id="impressum-section" class="content-section">
             <div style="max-width: 500px; margin: 0 auto; text-align: center;">
                 <h2 style="font-size: 1rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 40px; color: #fff;">Impressum</h2>
-                <p style="color: #aaa; font-size: 0.95rem;"><strong>Angaben gemäß § 5 TMG</strong></p>
+                <p style="color: #aaa; font-size: 0.95rem;"><strong>Angaben gemäß § 5 DDG</strong></p>
                 <p style="color: #aaa; font-size: 0.95rem;">
                     Daniel Kalker<br>
                     Tiergartenstr. 9<br>
@@ -489,7 +489,7 @@
             aboutSection.style.display = 'none';
             impressumSection.style.display = 'none';
             galleryContainer.style.display = 'block';
-            galleryFooter.style.display = 'block'; // Zeigt Sprungmarke
+            galleryFooter.style.display = 'block';
 
             galleryContainer.innerHTML = ''; 
             const filteredImages = images.filter(img => img.category === category);
@@ -518,7 +518,7 @@
 
         function showAbout() {
             galleryContainer.style.display = 'none';
-            galleryFooter.style.display = 'none'; // Versteckt Sprungmarke
+            galleryFooter.style.display = 'none'; 
             impressumSection.style.display = 'none';
             aboutSection.style.display = 'block';
             scrollToNav(false);
@@ -526,7 +526,7 @@
 
         function showImpressum() {
             galleryContainer.style.display = 'none';
-            galleryFooter.style.display = 'none'; // Versteckt Sprungmarke
+            galleryFooter.style.display = 'none'; 
             aboutSection.style.display = 'none';
             impressumSection.style.display = 'block';
             scrollToNav(false);
