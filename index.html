@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DANIEL KALKER | Photography</title>
+    
+    <!-- SEO BASIS -->
+    <meta name="description" content="Portfolio of Daniel Kalker, Cologne-based photographer. Exclusive dpa contributor focusing on urban life, architecture, and brands in Europe and East Asia.">
+    <meta name="keywords" content="Daniel Kalker, Photography, Urban Photography, Architecture Photography, Cologne, dpa, East Asia">
+    <meta name="author" content="Daniel Kalker">
+
+    <!-- SOCIAL SHARING / OPEN GRAPH -->
+    <meta property="og:title" content="DANIEL KALKER | Photography">
+    <meta property="og:description" content="Cinematic urban & architecture photography across Europe and East Asia.">
+    <meta property="og:image" content="https://www.wint.global/images/hero.jpg">
+    <meta property="og:url" content="https://www.wint.global">
+    <meta property="og:type" content="website">
+
+    <!-- MINIMALIST FAVICON -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='black'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-weight='bold' font-size='60' fill='white'>DK</text></svg>">
+
+    <style>
+        /* --- TOKYO MINIMALISM DESIGN SYSTEM --- */
+        :root {
+            --bg: #000000;
+            --text: #f0f0f0;
+            --gray: #aaaaaa;
+            --accent: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            overflow-anchor: none;
+        }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('images/hero.jpg') center/cover no-repeat;
+            animation: breathe 30s infinite alternate ease-in-out;
+            opacity: 0.4;
+            filter: grayscale(20%);
+        }
+
+        @keyframes breathe {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 6vw, 6rem);
+            font-weight: 300;
+            margin: 0;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .hero-content .subtitle {
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-top: 25px;
+            font-weight: 400;
+        }
+
+        /* --- SCROLL INDICATOR --- */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            color: var(--accent);
+            transition: opacity 0.4s ease;
+            animation: scrollBounce 2.5s infinite ease-in-out; 
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.8; }
+            50% { transform: translateX(-50%) translateY(12px); opacity: 1; }
+        }
+
+        .scroll-indicator:hover {
+            opacity: 1;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.85rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            font-weight: 500;
+            text-shadow: 0 0 10px rgba(0,0,0,0.8);
+        }
+
+        .scroll-line {
+            width: 2px;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+            animation: scrollLineAnim 2.5s infinite;
+        }
+
+        @keyframes scrollLineAnim {
+            0% { transform: scaleY(0); transform-origin: top; }
+            50% { transform: scaleY(1); transform-origin: top; }
+            50.1% { transform: scaleY(1); transform-origin: bottom; }
+            100% { transform: scaleY(0); transform-origin: bottom; }
+        }
+
+        /* --- SMART NAVIGATION --- */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
+            z-index: 100;
+            padding: 40px 5% 60px 5%;
+            display: flex;
+            justify-content: center;
+            pointer-events: none;
+            transition: transform 0.4s cubic-bezier(0.3, 0, 0.2, 1);
+            will-change: transform;
+        }
+
+        .nav-container.hide-nav {
+            transform: translateY(-100%);
+        }
+
+        nav {
+            display: flex;
+            gap: 6vw;
+            flex-wrap: wrap;
+            justify-content: center;
+            pointer-events: auto;
+        }
+
+        button, .text-link {
+            background: none; border: none;
+            color: var(--gray);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 400;
+            cursor: pointer;
+            padding: 10px 0;
+            transition: all 0.5s ease;
+        }
+
+        button:hover, button.active, .text-link:hover {
+            color: var(--accent);
+            text-shadow: 0 0 15px rgba(255,255,255,0.4);
+        }
+
+        #content-wrapper {
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* --- GALERIE: WIDE MASONRY --- */
+        .gallery {
+            column-count: 3;
+            column-gap: 50px;
+            padding: 0 5% 120px 5%;
+            max-width: 2000px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1200px) { .gallery { column-count: 2; column-gap: 30px; } }
+        @media (max-width: 700px) { .gallery { column-count: 1; padding: 0 20px 80px 20px;} }
+
+        .gallery-item {
+            width: 100%;
+            margin-bottom: 50px;
+            display: inline-block;
+            cursor: zoom-in;
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+            filter: blur(5px);
+            transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                        transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+                        filter 1.2s ease-out;
+        }
+
+        .gallery-item.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.02);
+        }
+
+        /* --- ABOUT & IMPRESSUM --- */
+        .content-section {
+            padding: 40px 5% 150px 5%;
+            display: none;
+            max-width: 1100px;
+            margin: 0 auto;
+            animation: slowFadeIn 1.2s ease forwards;
+        }
+
+        @keyframes slowFadeIn {
+            from { opacity: 0; filter: blur(10px); }
+            to { opacity: 1; filter: blur(0); }
+        }
+
+        .about-grid { display: flex; gap: 6vw; align-items: flex-start; } 
+        .about-image { flex: 0 0 35%; } 
+        
+        .about-image img { 
+            width: 100%; height: auto; display: block; 
+            filter: grayscale(100%);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        
+        .about-text { flex: 1; }
+        
+        .about-text h2 {
+            font-weight: 300;
+            font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+            line-height: 1.3;
+            color: var(--accent);
+            letter-spacing: 1px;
+            margin-top: -6px; 
+            margin-bottom: 40px;
+        }
+
+        .about-text p { 
+            font-size: 1.15rem; 
+            color: #cccccc; 
+            font-weight: 300; 
+            line-height: 1.8;
+            margin-bottom: 25px; 
+        }
+        
+        .meta-links { margin-top: 80px; padding-top: 30px; border-top: 1px solid #333; }
+
+        @media (max-width: 900px) {
+            .about-grid { flex-direction: column; gap: 50px; }
+            .about-image { width: 80%; margin: 0 auto; }
+        }
+
+        /* --- LIGHTBOX --- */
+        #lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.99);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 10000; opacity: 0; pointer-events: none;
+            transition: opacity 0.6s ease;
+        }
+
+        #lightbox.active { opacity: 1; pointer-events: all; }
+        #lightbox img { max-width: 90%; max-height: 90vh; }
+        #lightbox-close {
+            position: absolute; top: 40px; right: 50px;
+            font-size: 2.5rem; font-weight: 100; cursor: pointer;
+            color: #ffffff; transition: color 0.4s;
+        }
+        #lightbox-close:hover { color: var(--gray); }
+    </style>
+</head>
+<body>
+
+    <section id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>DANIEL KALKER</h1>
+            <span class="subtitle">Photography</span>
+        </div>
+        
+        <div class="scroll-indicator" onclick="scrollToNav(true)">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Menüleiste -->
+    <div class="nav-container" id="nav">
+        <nav>
+            <button class="nav-btn active" data-target="urban">Urban</button>
+            <button class="nav-btn" data-target="arch">Architecture</button>
+            <button class="nav-btn" data-target="brands">Brands</button>
+            <button class="nav-btn" data-target="about">About</button>
+        </nav>
+    </div>
+
+    <div id="content-wrapper">
+        <main class="gallery" id="gallery-container"></main>
+
+        <section id="about-section" class="content-section">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="images/portrait.jpg" alt="Portrait of Daniel Kalker">
+                </div>
+                
+                <div class="about-text">
+                    <h2>Finding the cinematic<br>in the everyday.</h2>
+                    <p>Hi, I'm Daniel. I'm a photographer based in Cologne, heavily focused on urban life, architecture, and brands across Europe and East Asia.</p>
+                    <p>I’m a huge film enthusiast, which deeply shapes the way I see the world. When I wander through a city, I’m always looking for that unexpected angle—a new perspective on something familiar. For me, photography isn't just about documenting what a location looks like; it's about capturing how it actually feels to be there.</p>
+                    
+                    <p>For the past 15 years, I’ve been an exclusive contributor to <a href="https://www.picture-alliance.com/en" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: none; border-bottom: 1px solid #555; padding-bottom: 1px;"><em>picture alliance</em></a> (dpa, the German Press Agency), building an archive of more than 10,000 images. Whether I'm shooting a metropolis at night or a quiet architectural detail, my goal is always to tell the story of that space. Building on this foundation, I am now available for direct commissions, editorial assignments, and gallery collaborations.</p>
+                    
+                    <br>
+                    <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #888;">Direct Inquiries</p>
+                    <a href="mailto:daniel.kalker@web.de" style="color: #fff; text-decoration: none; font-size: 1.4rem; font-weight: 300;">daniel.kalker@web.de</a>
+                    
+                    <div class="meta-links">
+                        <button class="text-link" onclick="showImpressum()">Legal / Impressum</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="impressum-section" class="content-section">
+            <div style="max-width: 500px; margin: 0 auto; text-align: center;">
+                <h2 style="font-size: 1rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 40px; color: #fff;">Impressum</h2>
+                <p style="color: #aaa; font-size: 0.95rem;"><strong>Angaben gemäß § 5 TMG</strong></p>
+                <p style="color: #aaa; font-size: 0.95rem;">
+                    Daniel Kalker<br>
+                    Tiergartenstr. 9<br>
+                    50735 Köln
+                </p>
+                <p style="color: #aaa; font-size: 0.95rem;">
+                    <strong>Kontakt</strong><br>
+                    E-Mail: <a href="mailto:d.kalker@web.de" style="color: #aaa; text-decoration: none; border-bottom: 1px solid #555; padding-bottom: 1px;">d.kalker@web.de</a>
+                </p>
+                <br><br>
+                <button class="text-link" onclick="document.querySelector('.nav-btn[data-target=\'about\']').click()">Return</button>
+            </div>
+        </section>
+    </div>
+
+    <div id="lightbox">
+        <span id="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Vollbild">
+    </div>
+
+    <script>
+        // --- BILDER DATENBANK ---
+        const images = [
+            // URBAN
+            { src: 'images/daniel-kalker-urban-victoriapeek.jpg', category: 'urban', alt: 'Daniel Kalker Photography - Urban Victoria Peak Night' },
+            { src: 'images/daniel-kalker-urban-london.jpg', category: 'urban', alt: 'Daniel Kalker Photography - Urban London' },
+            { src: 'images/daniel-kalker-urban-marakesh.jpg', category: 'urban', alt: 'Daniel Kalker Photography - Urban Marrakesh Market' },
+            { src: 'images/daniel-kalker-urban-nyc.jpg', category: 'urban', alt: 'Daniel Kalker Photography - Urban NYC Black and White' },
+            { src: 'images/daniel-kalker-urban-seoul.jpg', category: 'urban', alt: 'Daniel Kalker Photography - Urban Seoul Green Phone Booth' },
+            { src: 'images/daniel-kalker-urban-copenhagen.jpg', category: 'urban', alt: 'Daniel Kalker Photography - Urban Copenhagen' },
+            { src: 'images/daniel-kalker-urban-japaneseemperor.jpg', category: 'urban', alt: 'Daniel Kalker Photography - Urban Japanese Emperor' },
+            { src: 'images/daniel-kalker-urban-korea.jpg', category: 'urban', alt: 'Daniel Kalker Photography - Urban Korea Flag' },
+            { src: 'images/daniel-kalker-urban-stpaul.jpg', category: 'urban', alt: 'Daniel Kalker Photography - Urban St. Paul' },
+            { src: 'images/daniel-kalker-urban-taiwan.jpg', category: 'urban', alt: 'Daniel Kalker Photography - Urban Taiwan' },
+            { src: 'images/daniel-kalker-urban-soccer.jpg', category: 'urban', alt: 'Daniel Kalker Photography - Urban Soccer' },
+            { src: 'images/daniel-kalker-urban-athen.jpg', category: 'urban', alt: 'Daniel Kalker Photography - Urban Athen' },
+            { src: 'images/daniel-kalker-urban-hongkong.jpg', category: 'urban', alt: 'Daniel Kalker Photography - Urban Hongkong Night' },
+            { src: 'images/daniel-kalker-urban-tempel.jpg', category: 'urban', alt: 'Daniel Kalker Photography - Urban Tempel' },
+
+            // BRANDS
+            { src: 'images/daniel-kalker-brands-lawson.jpg', category: 'brands', alt: 'Daniel Kalker Photography - Brands Lawson Motion' },
+            { src: 'images/daniel-kalker-brands-spiegel.jpg', category: 'brands', alt: 'Daniel Kalker Photography - Brands Der Spiegel Night' },
+            { src: 'images/daniel-kalker-brands-dhl.jpg', category: 'brands', alt: 'Daniel Kalker Photography - Brands DHL Street' },
+            { src: 'images/daniel-kalker-brands-telekom.jpg', category: 'brands', alt: 'Daniel Kalker Photography - Brands Telekom Sky' },
+            { src: 'images/daniel-kalker-brands-google.jpg', category: 'brands', alt: 'Daniel Kalker Photography - Brands Google Reflection' },
+            { src: 'images/daniel-kalker-brands-bmw.jpg', category: 'brands', alt: 'Daniel Kalker Photography - Brands BMW Architecture' },
+            { src: 'images/daniel-kalker-brands-arte.jpg', category: 'brands', alt: 'Daniel Kalker Photography - Brands Arte' },
+            { src: 'images/daniel-kalker-brands-tesla.jpg', category: 'brands', alt: 'Daniel Kalker Photography - Brands Tesla Crypto' },
+            { src: 'images/daniel-kalker-brands-lg.jpg', category: 'brands', alt: 'Daniel Kalker Photography - Brands LG Street' },
+            { src: 'images/daniel-kalker-brands-pwc.jpg', category: 'brands', alt: 'Daniel Kalker Photography - Brands PWC Facade' },
+            { src: 'images/daniel-kalker-brands-dior.jpg', category: 'brands', alt: 'Daniel Kalker Photography - Brands Dior Classic' },
+            { src: 'images/daniel-kalker-brands-eucounsel.jpg', category: 'brands', alt: 'Daniel Kalker Photography - Brands EU Counsel' },
+            { src: 'images/daniel-kalker-brands-unicredit.jpg', category: 'brands', alt: 'Daniel Kalker Photography - Brands UniCredit' },
+            { src: 'images/daniel-kalker-brands-vw.jpg', category: 'brands', alt: 'Daniel Kalker Photography - Brands VW Factory' },
+            { src: 'images/daniel-kalker-brands-beer.jpg', category: 'brands', alt: 'Daniel Kalker Photography - Brands Beer' },
+
+            // ARCHITECTURE - Bereinigt um Cinque Terre
+            { src: 'images/daniel-kalker-architecture-euparliament.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture EU Parliament' },
+            { src: 'images/daniel-kalker-architecture-cologne.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Cologne' },
+            { src: 'images/daniel-kalker-architecture-korea.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Korea' },
+            { src: 'images/daniel-kalker-architecture-hongkongstockmarket.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Hongkong Stock Market' },
+            { src: 'images/daniel-kalker-architecture-rome.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Rome' },
+            
+            { src: 'images/daniel-kalker-architecture-china.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture China Pavilion' },
+            { src: 'images/daniel-kalker-architecture-macau.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Macau' },
+            { src: 'images/daniel-kalker-architecture-pantheon.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Pantheon' },
+            { src: 'images/daniel-kalker-architecture-bauhaus.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Bauhaus' },
+            { src: 'images/daniel-kalker-architecture-sacrecoeur.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Sacre Coeur' },
+            
+            { src: 'images/daniel-kalker-architecture-bundestag.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Bundestag' },
+            { src: 'images/daniel-kalker-architecture-britishmuseum.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture British Museum' },
+            { src: 'images/daniel-kalker-architecture-berlin.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Berlin' },
+            { src: 'images/daniel-kalker-architecture-bonn.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Bonn' }
+        ];
+
+        const galleryContainer = document.getElementById('gallery-container');
+        const aboutSection = document.getElementById('about-section');
+        const impressumSection = document.getElementById('impressum-section');
+        const navBtns = document.querySelectorAll('.nav-btn');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const navContainer = document.getElementById('nav');
+
+        let lastScrollY = window.scrollY;
+        
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            const heroHeight = document.getElementById('hero').offsetHeight;
+
+            if (currentScrollY > heroHeight) {
+                if (currentScrollY > lastScrollY) {
+                    navContainer.classList.add('hide-nav'); 
+                } else {
+                    navContainer.classList.remove('hide-nav'); 
+                }
+            } else {
+                navContainer.classList.remove('hide-nav');
+            }
+            lastScrollY = currentScrollY;
+        });
+
+        function scrollToNav(smooth = true) {
+            const targetHeight = document.getElementById('hero').offsetHeight;
+            navContainer.classList.remove('hide-nav');
+            
+            if (smooth) {
+                window.scrollTo({ top: targetHeight, behavior: 'smooth' });
+            } else {
+                setTimeout(() => {
+                    window.scrollTo(0, targetHeight);
+                    document.documentElement.scrollTop = targetHeight; 
+                    document.body.scrollTop = targetHeight;
+                }, 10);
+            }
+        }
+
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.05 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        function loadCategory(category, shouldScroll = true) {
+            aboutSection.style.display = 'none';
+            impressumSection.style.display = 'none';
+            galleryContainer.style.display = 'block';
+
+            galleryContainer.innerHTML = ''; 
+            const filteredImages = images.filter(img => img.category === category);
+            
+            filteredImages.forEach(image => {
+                const wrapper = document.createElement('div');
+                wrapper.classList.add('gallery-item');
+                
+                const imgElement = document.createElement('img');
+                imgElement.src = image.src;
+                imgElement.alt = image.alt;
+                imgElement.loading = 'lazy';
+                
+                wrapper.appendChild(imgElement);
+                wrapper.addEventListener('click', () => openLightbox(image.src));
+                
+                galleryContainer.appendChild(wrapper);
+                
+                setTimeout(() => observer.observe(wrapper), 30);
+            });
+
+            if (shouldScroll) {
+                scrollToNav(false); 
+            }
+        }
+
+        function showAbout() {
+            galleryContainer.style.display = 'none';
+            impressumSection.style.display = 'none';
+            aboutSection.style.display = 'block';
+            scrollToNav(false);
+        }
+
+        function showImpressum() {
+            galleryContainer.style.display = 'none';
+            aboutSection.style.display = 'none';
+            impressumSection.style.display = 'block';
+            scrollToNav(false);
+            navBtns.forEach(b => b.classList.remove('active'));
+        }
+
+        navBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                navBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const target = btn.dataset.target;
+                if (target === 'about') {
+                    showAbout();
+                } else {
+                    loadCategory(target, true);
+                }
+            });
+        });
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+        }
+
+        document.getElementById('lightbox-close').addEventListener('click', () => lightbox.classList.remove('active'));
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) lightbox.classList.remove('active');
+        });
+
+        loadCategory('urban', false);
+    </script>
+</body>
+</html>
