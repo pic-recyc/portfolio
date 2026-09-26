@@ -192,13 +192,13 @@
         .gallery {
             column-count: 3;
             column-gap: 50px;
-            padding: 0 5% 120px 5%;
+            padding: 0 5% 40px 5%; /* Padding unten reduziert für die Sprungmarke */
             max-width: 2000px;
             margin: 0 auto;
         }
 
         @media (max-width: 1200px) { .gallery { column-count: 2; column-gap: 30px; } }
-        @media (max-width: 700px) { .gallery { column-count: 1; padding: 0 20px 80px 20px;} }
+        @media (max-width: 700px) { .gallery { column-count: 1; padding: 0 20px 30px 20px;} }
 
         .gallery-item {
             width: 100%;
@@ -327,6 +327,11 @@
     <div id="content-wrapper">
         <main class="gallery" id="gallery-container"></main>
 
+        <!-- NEU: Back to Top für die Galerie -->
+        <div id="gallery-footer" style="text-align: center; padding-bottom: 120px; display: none;">
+            <button class="text-link" onclick="scrollToNav(true)">↑ Back to Top</button>
+        </div>
+
         <section id="about-section" class="content-section">
             <div class="about-grid">
                 <div class="about-image">
@@ -342,7 +347,7 @@
                     
                     <br>
                     <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #888;">Direct Inquiries</p>
-                    <a href="mailto:daniel.kalker@web.de" style="color: #fff; text-decoration: none; font-size: 1.4rem; font-weight: 300;">daniel.kalker@web.de</a>
+                    <a href="mailto:d.kalker@web.de" style="color: #fff; text-decoration: none; font-size: 1.4rem; font-weight: 300;">d.kalker@web.de</a>
                     
                     <div class="meta-links">
                         <button class="text-link" onclick="showImpressum()">Legal / Impressum</button>
@@ -411,19 +416,17 @@
             { src: 'images/daniel-kalker-brands-vw.jpg', category: 'brands', alt: 'Daniel Kalker Photography - Brands VW Factory' },
             { src: 'images/daniel-kalker-brands-beer.jpg', category: 'brands', alt: 'Daniel Kalker Photography - Brands Beer' },
 
-            // ARCHITECTURE - Bereinigt um Cinque Terre
+            // ARCHITECTURE
             { src: 'images/daniel-kalker-architecture-euparliament.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture EU Parliament' },
             { src: 'images/daniel-kalker-architecture-cologne.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Cologne' },
             { src: 'images/daniel-kalker-architecture-korea.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Korea' },
             { src: 'images/daniel-kalker-architecture-hongkongstockmarket.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Hongkong Stock Market' },
             { src: 'images/daniel-kalker-architecture-rome.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Rome' },
-            
             { src: 'images/daniel-kalker-architecture-china.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture China Pavilion' },
             { src: 'images/daniel-kalker-architecture-macau.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Macau' },
             { src: 'images/daniel-kalker-architecture-pantheon.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Pantheon' },
             { src: 'images/daniel-kalker-architecture-bauhaus.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Bauhaus' },
             { src: 'images/daniel-kalker-architecture-sacrecoeur.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Sacre Coeur' },
-            
             { src: 'images/daniel-kalker-architecture-bundestag.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Bundestag' },
             { src: 'images/daniel-kalker-architecture-britishmuseum.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture British Museum' },
             { src: 'images/daniel-kalker-architecture-berlin.jpg', category: 'arch', alt: 'Daniel Kalker Photography - Architecture Berlin' },
@@ -431,6 +434,7 @@
         ];
 
         const galleryContainer = document.getElementById('gallery-container');
+        const galleryFooter = document.getElementById('gallery-footer');
         const aboutSection = document.getElementById('about-section');
         const impressumSection = document.getElementById('impressum-section');
         const navBtns = document.querySelectorAll('.nav-btn');
@@ -485,6 +489,7 @@
             aboutSection.style.display = 'none';
             impressumSection.style.display = 'none';
             galleryContainer.style.display = 'block';
+            galleryFooter.style.display = 'block'; // Zeigt Sprungmarke
 
             galleryContainer.innerHTML = ''; 
             const filteredImages = images.filter(img => img.category === category);
@@ -513,6 +518,7 @@
 
         function showAbout() {
             galleryContainer.style.display = 'none';
+            galleryFooter.style.display = 'none'; // Versteckt Sprungmarke
             impressumSection.style.display = 'none';
             aboutSection.style.display = 'block';
             scrollToNav(false);
@@ -520,6 +526,7 @@
 
         function showImpressum() {
             galleryContainer.style.display = 'none';
+            galleryFooter.style.display = 'none'; // Versteckt Sprungmarke
             aboutSection.style.display = 'none';
             impressumSection.style.display = 'block';
             scrollToNav(false);
